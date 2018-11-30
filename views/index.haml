@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %link{:href => "//fonts.googleapis.com/css?family=Raleway:400,300,600", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/normalize.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/style.css", :rel => "stylesheet", :type => "text/css"}/
+  %body.container
+    %h1.header セリフ付き画像作成SNS
+    %div.docs-section
+      %form{:action => "image", :method => "post"}
+        %div.row
+          %p 入力したいセリフを入れて下さい。
+          %input.u-pull-left{:name => "name", :type => "text", :style => "padding-left: 20px;"}/
+          %input.button-primary{:type => "submit", :value => "送信する"}/
