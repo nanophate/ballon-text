@@ -5,6 +5,9 @@ require 'haml'
 require 'pry'
 require 'mini_magick'
 
+def current_time
+  Time.now.strftime('%Y%m%d%H%m%s')
+end
 
 get '/' do
   haml :index
@@ -20,7 +23,9 @@ post '/image' do
     config.pointsize 65
     config.draw "text 0,0 #{text}"
   end
-  image.write "public/nano.png"
+  image.write "public/#{current_time}.png"
+
+  @image_path = "#{current_time}.png"
 
   haml :image
 end
