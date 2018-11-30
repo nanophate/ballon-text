@@ -2,7 +2,6 @@
 
 require 'sinatra'
 require 'haml'
-require 'pry'
 require 'mini_magick'
 
 def current_time
