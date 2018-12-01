@@ -1,0 +1,26 @@
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore buffer files in local environment
+Icon
+*.swp
+*.pdf
+*~
+*.pyc
+#*
+*#
+*.out
+.DS_Store
+config.json
+archive*.zip
+/archive
+.#*
+/vendor/bundle/
+sns-balloon_development
