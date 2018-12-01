@@ -26,8 +26,8 @@ class ImagesController < ApplicationController
   def images_build
     [
       {url: 'https://i.gyazo.com/39c92774e5f8eec6a30d1dbe3315f5da.png'},
-      {url: 'https://i.gyazo.com/39c92774e5f8eec6a30d1dbe3315f5da.png'},
-      {url: 'https://i.gyazo.com/39c92774e5f8eec6a30d1dbe3315f5da.png'}
+      {url: 'https://i.gyazo.com/dfe0386b3eece22f212c0a709ffbac5c.jpg'},
+      {url: 'https://i.gyazo.com/758b0325446a548362cf4014374164d8.jpg'}
     ]
   end
 
