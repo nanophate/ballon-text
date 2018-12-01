@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %link{:href => "//fonts.googleapis.com/css?family=Raleway:400,300,600", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/normalize.css", :rel => "stylesheet", :type => "text/css"}/
+    %link{:href => "/css/style.css", :rel => "stylesheet", :type => "text/css"}/
+  %body.container
+    %h1.header セリフ付き画像作成SNS
+    %p.center 好みの画像を選択してセリフをつけよう！
+    %div.docs-section
+      %div.row
+        - @images.each do |image|
+          %div.four.columns
+            = link_to image_tag(image[:url]), new_image_path(image_url: image[:url])

@@ -1,0 +1,13 @@
+%body.container
+  %h1.header セリフ付き画像作成SNS
+  %p.center 好みの画像を選択してセリフをつけよう！
+  %div.docs-section
+    = form_for(:images, url: images_path) do |f|
+      %div.row
+        %div.six.columns
+          = image_tag(@image_url)
+        %div.six.columns
+          %p 入力したいセリフを入れて下さい。
+          = f.hidden_field(:url, :value => @image_url)
+          = f.text_field :text, placeholder: "セリフをいれてね!", size: '30'
+          = f.submit "作成する", class: 'button-primary'

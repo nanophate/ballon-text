@@ -422,6 +422,10 @@ there.
   text-align: center;
 }
 
+.center{
+  text-align: center;
+}
+
 .docs-header {
     text-transform: uppercase;
     font-size: 1.4rem;
@@ -433,6 +437,9 @@ there.
     border-top: 1px solid #eee;
     padding: 4rem 0;
     margin-bottom: 0;
+}
+.docs-section img{
+  width: 100%;
 }
 
 .at_mark {
