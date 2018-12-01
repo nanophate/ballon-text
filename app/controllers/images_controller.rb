@@ -20,7 +20,6 @@ class ImagesController < ApplicationController
       config.pointsize 65
       config.draw "text 0,0 #{text}"
     end
-    image.write "public/#{current_time}.png"
   end
 
   def images_build
