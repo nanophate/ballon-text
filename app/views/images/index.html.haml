@@ -15,6 +15,7 @@
     %div.docs-section
       %div.row
         %p.center 最近作られたセリフ付き画像
-        - @caption.each do |c|
-          %div.four.columns
-            = link_to image_tag(c.image)
+        - if @caption.exists?
+          - @caption.each do |c|
+            %div.four.columns
+              = link_to image_tag(c.image)
