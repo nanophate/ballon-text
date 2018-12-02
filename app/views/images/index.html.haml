@@ -12,3 +12,9 @@
         - @images.each do |image|
           %div.four.columns
             = link_to image_tag(image[:url]), new_image_path(image_url: image[:url])
+    %div.docs-section
+      %div.row
+        %p.center 最近作られたセリフ付き画像
+        - @caption.each do |c|
+          %div.four.columns
+            = link_to image_tag(c.image)

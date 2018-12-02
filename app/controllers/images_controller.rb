@@ -2,6 +2,7 @@
 class ImagesController < ApplicationController
   def index
     @images = images_build
+    @caption = Caption.all.with_attached_image
     render :index
   end
 
@@ -15,11 +16,16 @@ class ImagesController < ApplicationController
     text = params[:images][:text]
     image = MiniMagick::Image.open(image_url)
     image.combine_options do |config|
-      config.font "GenEiKoburiMin4-R.ttf"
+      config.font "public/GenEiKoburiMin4-R.ttf"
       config.gravity "center"
       config.pointsize 65
       config.draw "text 0,0 #{text}"
     end
+
+    caption = Caption.create!(name: text)
+    caption.image.attach(io: File.open(image.path), filename: current_time, content_type: "image/jpg")
+
+    redirect_to images_path
   end
 
   def images_build
