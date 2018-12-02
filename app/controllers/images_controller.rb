@@ -12,18 +12,30 @@ class ImagesController < ApplicationController
   end
 
   def create
-    image_url = params[:images][:url]
-    text = params[:images][:text]
-    image = MiniMagick::Image.open(image_url)
-    image.combine_options do |config|
-      config.font "public/GenEiKoburiMin4-R.ttf"
-      config.gravity "center"
-      config.pointsize 65
-      config.draw "text 0,0 #{text}"
-    end
+    image = MiniMagick::Image.open(images_params[:url])
+    text = images_params[:text].encode(Encoding::UTF_8)
 
-    caption = Caption.create!(name: text)
-    caption.image.attach(io: File.open(image.path), filename: current_time, content_type: "image/jpg")
+    begin
+      image.combine_options do |config|
+       config.font "public/GenEiKoburiMin4-R.ttf"
+       config.gravity "center"
+       config.pointsize 65
+       config.draw "text 0,0 #{text}"
+      end
+
+      Tempfile.open { |t|
+         t.binmode
+         t.write image.to_blob
+         t.close
+
+         ActiveRecord::Base.transaction do
+           caption = Caption.create!(name: text)
+           caption.image.attach(io: File.open(t.path), filename: current_time, content_type: "image/jpg")
+         end
+      }
+    rescue => e
+     p e
+    end
 
     redirect_to images_path
   end
@@ -39,5 +51,9 @@ class ImagesController < ApplicationController
   private
   def current_time
     Time.now.strftime('%Y%m%d%H%m%s')
+  end
+
+  def images_params
+    params.require(:images).permit(:text, :url)
   end
 end

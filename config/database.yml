@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
-  database: db/sns-balloon_production.sqlite3
+  adapter: postgresql
+  encoding: utf8
   username: sns-balloon
   password: <%= ENV['SNS-BALLOON_DATABASE_PASSWORD'] %>
