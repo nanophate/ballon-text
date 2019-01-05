@@ -13,15 +13,20 @@ class ImagesController < ApplicationController
 
   def create
     image = MiniMagick::Image.open(images_params[:url])
-    text = images_params[:text].encode(Encoding::UTF_8)
+    caption = images_params[:text].encode(Encoding::UTF_8)
 
     begin
       image.combine_options do |config|
        config.font "public/GenEiKoburiMin4-R.ttf"
        config.gravity "center"
        config.pointsize 65
-       config.draw "text 0,0 #{text}"
+       #config.draw "text 0,0 #{caption}"
       end
+
+      config_draw = Magick::Draw.new
+      config_draw.encoding = "Unicode"
+      config_draw.text(0,0, "#{caption}")
+      config_draw.draw(image)
 
       Tempfile.open { |t|
          t.binmode
