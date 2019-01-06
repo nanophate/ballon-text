@@ -20,13 +20,8 @@ class ImagesController < ApplicationController
        config.font "public/GenEiKoburiMin4-R.ttf"
        config.gravity "center"
        config.pointsize 65
-       #config.draw "text 0,0 #{caption}"
+       config.draw "text 0,0 '#{caption}''"
       end
-
-      config_draw = Magick::Draw.new
-      config_draw.encoding = "Unicode"
-      config_draw.text(0,0, "#{caption}")
-      config_draw.draw(image)
 
       Tempfile.open { |t|
          t.binmode
@@ -34,7 +29,7 @@ class ImagesController < ApplicationController
          t.close
 
          ActiveRecord::Base.transaction do
-           caption = Caption.create!(name: text)
+           caption = Caption.create!(name: caption)
            caption.image.attach(io: File.open(t.path), filename: current_time, content_type: "image/jpg")
          end
       }
