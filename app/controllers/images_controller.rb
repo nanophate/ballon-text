@@ -14,13 +14,15 @@ class ImagesController < ApplicationController
   def create
     image = MiniMagick::Image.open(images_params[:url])
     caption = images_params[:text].encode(Encoding::UTF_8)
+    x = images_params[:center_pos_x]
+    y = images_params[:center_pos_y]
 
     begin
       image.combine_options do |config|
        config.font "public/GenEiKoburiMin4-R.ttf"
        config.gravity "center"
        config.pointsize 65
-       config.draw "text 0,0 '#{caption}''"
+       config.draw "text #{x},#{y} '#{caption}''"
       end
 
       Tempfile.open { |t|

@@ -11,6 +11,8 @@
         %div.six.columns
           %p 入力したいセリフを入れて下さい。
           = f.hidden_field(:url, :value => @image_url)
+          = f.hidden_field(:center_pos_x, value: '')
+          = f.hidden_field(:center_pos_y, value: '')
           = f.text_field :text, placeholder: "セリフをいれてね!", size: '30'
           = f.submit "作成する", class: 'button-primary'
   %div.docs-section
@@ -45,4 +47,6 @@
       mousey = parseInt(e.clientY-canvasy);
         //Output
         $('#output').html('end_pos: '+mousex+', '+mousey+'<br/>start_pos: '+last_mousex+', '+last_mousey+'<br/>mousedown: '+mousedown);
+        $('#images_center_pos_x').val((mousex + last_mousex) / 2 )
+        $('#images_center_pos_y').val((mousey + last_mousey) / 2 )
     });
