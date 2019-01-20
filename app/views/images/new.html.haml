@@ -4,10 +4,45 @@
   %div.docs-section
     = form_for(:images, url: images_path) do |f|
       %div.row
-        %div.six.columns
+        %div.six.columns.canvas-image
+          %p セリフを入れたん部分を選択して下さい。
           = image_tag(@image_url)
+          %canvas#canvas
         %div.six.columns
           %p 入力したいセリフを入れて下さい。
           = f.hidden_field(:url, :value => @image_url)
           = f.text_field :text, placeholder: "セリフをいれてね!", size: '30'
           = f.submit "作成する", class: 'button-primary'
+  %div.docs-section
+    #output
+
+  :javascript
+    //Canvas
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    //Variables
+    var canvasx = $(canvas).offset().left;
+    var canvasy = $(canvas).offset().top;
+    var last_mousex = last_mousey = 0;
+    var mousex = mousey = 0;
+    var mousedown = false;
+
+    //Mousedown
+    $(canvas).on('mousedown', function(e) {
+        last_mousex = parseInt(e.clientX-canvasx);
+      last_mousey = parseInt(e.clientY-canvasy);
+        mousedown = true;
+    });
+
+    //Mouseup
+    $(canvas).on('mouseup', function(e) {
+        mousedown = false;
+    });
+
+    //Mousemove
+    $(canvas).on('mousemove', function(e) {
+        mousex = parseInt(e.clientX-canvasx);
+      mousey = parseInt(e.clientY-canvasy);
+        //Output
+        $('#output').html('end_pos: '+mousex+', '+mousey+'<br/>start_pos: '+last_mousex+', '+last_mousey+'<br/>mousedown: '+mousedown);
+    });

@@ -11,6 +11,7 @@ gem 'coffee-rails'
 gem 'jbuilder'
 gem 'haml'
 gem "mini_magick"
+gem "jquery-rails"
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem "aws-sdk-s3", require: false

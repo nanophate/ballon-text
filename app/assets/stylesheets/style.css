@@ -448,3 +448,20 @@ there.
   left: 0px;
   display: block;
 }
+
+canvas {
+  cursor: crosshair;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.canvas-image {
+  display: inline-block;
+  position: relative;
+}
+
+.canvas-image img {
+  z-index: 1;
+  position: absolute;
+}
