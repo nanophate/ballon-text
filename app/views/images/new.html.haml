@@ -47,6 +47,6 @@
       mousey = parseInt(e.clientY-canvasy);
         //Output
         $('#output').html('end_pos: '+mousex+', '+mousey+'<br/>start_pos: '+last_mousex+', '+last_mousey+'<br/>mousedown: '+mousedown);
-        $('#images_center_pos_x').val((mousex + last_mousex) / 2 )
-        $('#images_center_pos_y').val((mousey + last_mousey) / 2 )
+        $('#images_center_pos_x').val(last_mousex)
+        $('#images_center_pos_y').val(last_mousey)
     });

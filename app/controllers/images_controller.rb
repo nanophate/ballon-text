@@ -22,7 +22,8 @@ class ImagesController < ApplicationController
        config.font "public/GenEiKoburiMin4-R.ttf"
        config.gravity "center"
        config.pointsize 65
-       config.draw "text #{x},#{y} '#{caption}''"
+       ## config.draw "text #{x},#{y} '#{caption}''"
+       config.draw "text 0,0 '#{caption}''"
       end
 
       Tempfile.open { |t|
