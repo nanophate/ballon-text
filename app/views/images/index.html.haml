@@ -8,8 +8,9 @@
           = link_to image_tag(image[:url]), new_image_path(image_url: image[:url])
   %p.center 最近作られたセリフ付き画像
   %div.docs-section
-    %div.row
-      - if @caption.exists?
-        - @caption.each do |c|
-          %div.four.columns
-            = link_to image_tag(c.image)
+    - if @caption.exists?
+      - @caption.in_groups_of(3, false).each do |group|
+        %div.row
+          - group.each do |c|
+            %div.four.columns
+              = link_to image_tag(c.image)
